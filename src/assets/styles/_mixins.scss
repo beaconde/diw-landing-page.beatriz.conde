@@ -1,0 +1,24 @@
+@use 'colors';
+
+@mixin flex($flex-direction: row, $flex-wrap: wrap, $justify-content: space-between, $align-items: center) {
+  display: flex;
+  flex-direction: $flex-direction;
+  flex-wrap: $flex-wrap;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+@mixin hover($activo: false) {
+  @if ($activo) {
+    color: colors.$whiteHover;
+  } @else {
+    color: colors.$blackHover;
+  }
+  transition: all 0.2s ease-in;
+}
+
+@mixin responsive($px: 780px) {
+
+  @media (max-width: $px) { @content; }
+
+}

@@ -1,0 +1,252 @@
+@use 'sass:math';
+@use 'reset';
+@use 'colors';
+@use 'mixins';
+
+
+%fill-width {
+  width: 100%;
+}
+
+a:hover {
+  @include mixins.hover();
+}
+
+header {
+  @include mixins.flex();
+  background-color: colors.$blue;
+  height: 13vh;
+  padding: 0 80px 0 20px;
+
+  @include mixins.responsive(480px) {
+    padding-right: 30px;
+  }
+
+  img {
+    height: 65%;
+  }
+
+  nav {
+    font-size: 1.5em;
+    width: 60%;
+
+    ul {
+      @include mixins.flex();
+
+      @include mixins.responsive(580px) {
+
+        @include mixins.flex(column, nowrap, space-between, flex-end);
+
+      }
+    }
+
+    a {
+      @include mixins.responsive() {
+        font-size: 0.8em;
+      }
+
+    }
+
+  }
+
+  .activo {
+    color: colors.$white;
+
+    &:hover {
+      @include mixins.hover(true);
+    }
+
+  }
+
+}
+
+body {
+
+  @include mixins.flex(column, nowrap, flex-start, stretch);
+
+}
+
+main {
+  
+  .section {
+    display: none;
+  }
+
+  .activo {
+    display: block;
+  }
+  
+}
+
+.contenedor-video {
+  height: 30vh;
+  overflow: hidden;
+  position: relative;
+
+  .titulo {
+    z-index: 1;
+    position: relative;
+    color: colors.$white;
+    font-size: 3em;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+
+    h1 {
+      color: colors.$white;
+
+      @include mixins.responsive() {
+        font-size: 1em;
+      }
+
+      @include mixins.responsive(480px) {
+        font-size: 0.8em;
+      }
+
+    }
+
+  }
+
+  video {
+    z-index: 0;
+    position: absolute;
+  }
+
+}
+
+.contenedor-inicio {
+  padding: 40px;
+
+  p, h2 {
+    margin-top: 20px;
+  }
+
+  audio {
+    margin-top: 40px;
+  }
+
+}
+
+.acordeon {
+
+  padding: 40px;
+
+  .parrafo {
+    padding: 0.5em 0;
+  }
+
+  .boton-acordeon {
+    cursor: pointer;
+    background-color: colors.$lavender;
+    width: fit-content;
+    margin: 25px 0;
+    padding: 5px 15px;
+    border-radius: 0.3em;
+  }
+
+  .contenido {
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+
+  .activo {
+
+    .contenido {
+      height: 40em;
+      transition: all .5s ease;
+
+      @include mixins.responsive() {
+        height: 25em;
+      }
+
+       @include mixins.responsive(480px) {
+         height: 15em;
+       }
+
+    }
+
+  }
+
+}
+
+.carrusel {
+  @extend %fill-width;
+  max-width: 100%;
+  padding-top: 40px;
+  overflow: hidden;
+
+  .imagenes {
+    @include mixins.flex(row, nowrap, center, flex-start);
+    width: 300%;
+    height: fit-content;
+
+    transform: translateX(0%);
+    transition: all 0.5s ease;
+
+    img {
+      width: math.div(100%, 3);
+      min-height: 10vh;
+      height: 80vh;
+      margin: 0 0.5%;
+      object-fit: contain;
+
+      @include mixins.responsive() {
+        height: 80%;
+      }
+
+    }
+
+  }
+
+  .botones-carrusel {
+    @include mixins.flex(row, nowrap, center, center);
+    @extend %fill-width;
+    padding: 0.4em;
+    margin-top: 0.5em;
+
+    .punto {
+      width: 1em;
+      height: 1em;
+      margin: 1em 1em 0 1em;
+      border-radius: 50%;
+      box-shadow: 0 0 0.5em 0.05em colors.$blue;
+      cursor: pointer;
+
+      @include mixins.responsive() {
+        width: 0.8em;
+        height: 0.8em;
+      }
+
+    }
+
+    .activo {
+      background-color: colors.$blue;
+    }
+
+  }
+
+}
+
+footer {
+  @include mixins.flex();
+  height: 13vh;
+  background-color: colors.$lavender;
+  padding: 20px 50px;
+  margin-top: auto;
+
+  a, p {
+    @include mixins.responsive() {
+      font-size: 0.8em;
+    }
+
+  }
+
+  ul {
+    @include mixins.flex(column, wrap, space-between, flex-end);
+
+  }
+
+}
+
